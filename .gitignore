@@ -1,0 +1,101 @@
+#########################################
+# .NET / ASP.NET / C#
+#########################################
+
+# Specific
+plan.txt
+.env
+
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.log
+*.vspscc
+*.vssscc
+*.dbmdl
+*.pdb
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains Rider / IntelliJ / WebStorm
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Entity Framework Migrations
+Migrations/
+
+# Paket dependency manager
+.paket/
+paket-files/
+
+# DotCover
+*.dotCover
+
+# NCrunch
+*.ncrunch*
+.*crunch*.local.xml
+
+# Visual Studio for Mac
+*.userprefs
+
+# Azure
+.publishsettings
+*.azurePubxml
+*.pubxml
+*.publishproj
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Rider-specific (in addition to .idea)
+.idea/
+*.sln.iml
+
+# Coverage and analysis results
+coverage/
+TestResults/
+*.coverage
+*.coveragexml
+*.codeanalysis
+
+# Logs
+*.log
+
+# Others
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+*.dotsettings.user
+
+# Global.json SDK version settings (keep if needed)
+# global.json
+
+# Mac-specific
+.DS_Store
+
+# Windows-specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
