@@ -5,9 +5,16 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Marks.Application\Marks.Application.csproj" />
+    <ProjectReference Include="..\Marks.Core\Marks.Core.csproj" />
+    <ProjectReference Include="..\Marks.Infrastructure\Marks.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
