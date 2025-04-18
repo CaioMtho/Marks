@@ -3,11 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Marks.Infrastructure.Data
 {
-    public class MarksDbContext : DbContext
+    public class MarksDbContext(DbContextOptions<MarksDbContext> options) : DbContext(options)
     {
-        public MarksDbContext(DbContextOptions<MarksDbContext> options)
-            : base(options) { }
-
         public DbSet<User> Users => Set<User>();
         public DbSet<Bookmark> Bookmarks => Set<Bookmark>();
         public DbSet<Tag> Tags => Set<Tag>();
