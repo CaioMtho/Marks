@@ -10,17 +10,14 @@ public class User
     [Column("id")]
     public long Id { get; set; }
 
-    [Required]
     [Column("username")]
     [MaxLength(50)]
     public string Username { get; set; } = null!;
 
-    [Required]
     [Column("email")]
     [MaxLength(100)]
     public string Email { get; set; } = null!;
 
-    [Required]
     [Column("password")]
     public string Password { get; set; } = null!;
 

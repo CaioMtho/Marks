@@ -10,12 +10,10 @@ public class Bookmark
     [Column("id")]
     public long Id { get; set; }
 
-    [Required]
     [Column("title")]
     [MaxLength(255)]
     public string Title { get; set; } = null!;
 
-    [Required]
     [Column("url")]
     public string Url { get; set; } = null!;
 
