@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Marks.Application.Dto.Folder;
 
-public class FolderUpdateDTO
+public class FolderUpdateDto
 {
     [MaxLength(100)]
     public string? Name { get; set; }

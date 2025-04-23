@@ -1,3 +1,4 @@
+using Marks.Application.Mappings;
 using Marks.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
+builder.Services.AddAutoMapper(typeof(FolderProfile).Assembly);
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

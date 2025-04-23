@@ -1,6 +1,6 @@
 using Marks.Application.Dto.Tag;
 
-public class BookmarkDTO
+public class BookmarkDto
 {
     public long Id { get; set; }
     public string Title { get; set; } = null!;

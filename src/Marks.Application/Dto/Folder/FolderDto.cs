@@ -2,7 +2,7 @@ using Marks.Application.Dto.Bookmark;
 
 namespace Marks.Application.Dto.Folder;
 
-public class FolderDTO
+public class FolderDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null!;
