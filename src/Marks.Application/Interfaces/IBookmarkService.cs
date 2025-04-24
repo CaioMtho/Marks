@@ -11,11 +11,16 @@ public interface IBookmarkService
         string? filter = null,
         long? userId = null,
         long? folderId = null,
-        string? orderBy = null,
-        string? orderDirection = null
+        string? orderBy = "Title",
+        string? orderDirection = "asc",
+        CancellationToken cancellationToken = default
     );
     Task<BookmarkDto> GetBookmarkByIdAsync(long id);
-    Task<BookmarkDto> UpdateBookmarkAsync(BookmarkUpdateDto patch);
+    Task<BookmarkDto> UpdateBookmarkAsync(
+        long id,
+        BookmarkUpdateDto dto,
+        CancellationToken cancellationToken = default
+    );
     Task<BookmarkDto> CreateBookmarkAsync(BookmarkCreateDto bookmark);
     Task DeleteBookmarkAsync(long id);
 }

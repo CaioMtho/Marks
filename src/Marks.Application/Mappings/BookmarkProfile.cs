@@ -13,6 +13,5 @@ public class BookmarkProfile : Profile
         CreateMap<BookmarkCreateDto, Bookmark>();
         CreateMap<BookmarkUpdateDto, Bookmark>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-
     }
 }
