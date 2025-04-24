@@ -7,10 +7,10 @@ public class BookmarkDto
     public string Url { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
 
-    public Guid FolderId { get; set; }
+    public long FolderId { get; set; }
     public string? FolderName { get; set; }
 
     public ICollection<TagSummaryDto> Tags { get; set; } = [];
 
-    public Guid UserId { get; set; }
+    public long UserId { get; set; }
 }
