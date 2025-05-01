@@ -6,22 +6,32 @@ namespace Marks.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController(IUserService _userService) : ControllerBase
+    public class UserController(IUserService userService) : ControllerBase
     {
-        [HttpGet("{id}")]
+        private readonly IUserService _userService = userService;
+
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
+        {
+            var token = 
+                await _userService.Authenticate(userLoginDto.Email, userLoginDto.Password);
+            if (token == null) 
+                return Unauthorized(new { message = "Username or password is incorrect" });
+            return Ok(token);
+        }
+        
+        [HttpGet("{id:long}")]
         public async Task<IActionResult> GetUserById(long id)
         {
             var user = await _userService.GetUserByIdAsync(id);
-            if (user == null)
-                return NotFound();
 
             return Ok(user);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto user)
+        [HttpPut("{id:long}")]
+        public async Task<IActionResult> UpdateUser(long id, [FromBody] UserUpdateDto user)
         {
-            var updatedUser = await _userService.UpdateUserAsync(user);
+            var updatedUser = await _userService.UpdateUserAsync(id, user);
             return Ok(updatedUser);
         }
 

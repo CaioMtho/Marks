@@ -14,7 +14,6 @@ public class BookmarkService(MarksDbContext context, IMapper mapper) : IBookmark
 {
     private readonly MarksDbContext _context = context;
     private readonly IMapper _mapper = mapper;
-
     public async Task<PaginatedResult<BookmarkDto>> GetBookmarksAsync(
         int? page = 1,
         int? pageSize = 10,
@@ -26,7 +25,7 @@ public class BookmarkService(MarksDbContext context, IMapper mapper) : IBookmark
         CancellationToken cancellationToken = default
     )
     {
-        var query = _context.Bookmarks.AsQueryable();
+        var query = _context.Bookmarks.AsQueryable().AsNoTracking();
 
         if (userId.HasValue)
             query = query.Where(b => b.UserId == userId.Value);

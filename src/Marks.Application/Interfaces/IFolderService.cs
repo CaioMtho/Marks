@@ -14,7 +14,7 @@ public interface IFolderService
         string? orderDirection = null
     );
     Task<FolderDto> GetFolderByIdAsync(long id);
-    Task<FolderDto> UpdateFolderAsync(FolderUpdateDto patch);
+    Task<FolderDto> UpdateFolderAsync(long id, FolderUpdateDto patch);
     Task<FolderDto> CreateFolderAsync(FolderCreateDto folder);
     Task DeleteFolderAsync(long id);
 }

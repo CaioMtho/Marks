@@ -24,7 +24,6 @@ builder.Services.AddAutoMapper(typeof(FolderProfile).Assembly);
 builder.Services.AddScoped<IBookmarkService, BookmarkService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFolderService, FolderService>();
-builder.Services.AddScoped<ITagService, TagService>();
 
 var app = builder.Build();
 

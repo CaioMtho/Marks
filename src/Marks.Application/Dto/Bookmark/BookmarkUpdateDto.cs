@@ -12,5 +12,5 @@ public class BookmarkUpdateDto
     [Required]
     public required string Url { get; set; } = null!;
     public long? FolderId { get; set; }
-    public ICollection<long> TagIds { get; set; } = [];
+    public ICollection<long>? TagIds { get; set; } = [];
 }

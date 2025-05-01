@@ -6,8 +6,9 @@ namespace Marks.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class BookmarkController(IBookmarkService _bookmarkService) : ControllerBase
+public class BookmarkController(IBookmarkService bookmarkService) : ControllerBase
 {
+    private readonly IBookmarkService _bookmarkService = bookmarkService;
     [HttpGet("{id}")]
     public async Task<IActionResult> GetBookmarkById(long id)
     {

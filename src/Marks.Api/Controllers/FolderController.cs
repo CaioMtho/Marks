@@ -6,8 +6,10 @@ namespace Marks.Api.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    public class FolderController(IFolderService _folderService) : ControllerBase
+    public class FolderController(IFolderService folderService) : ControllerBase
     {
+        private readonly IFolderService _folderService = folderService;
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFolderById(long id)
         {
