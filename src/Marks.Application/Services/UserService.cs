@@ -31,9 +31,10 @@ public class UserService(MarksDbContext context, ITokenService tokenService, IMa
 
     public async Task<UserDto> CreateUserAsync(UserCreateDto user)
     {
-        await _context.AddAsync(_mapper.Map<User>(user));
+        var createdUser = _mapper.Map<User>(user);
+        await _context.AddAsync(createdUser);
         await _context.SaveChangesAsync();
-        return _mapper.Map<UserDto>(user);
+        return _mapper.Map<UserDto>(createdUser);
     }
 
     public async Task DeleteUserAsync(long id)

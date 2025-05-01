@@ -58,9 +58,10 @@ public class BookmarkService(MarksDbContext context, IMapper mapper) : IBookmark
 
     public async Task<BookmarkDto> CreateBookmarkAsync(BookmarkCreateDto bookmark)
     {
-        await _context.Bookmarks.AddAsync(_mapper.Map<Bookmark>(bookmark));
+        var createdBookmark = _mapper.Map<Bookmark>(bookmark);
+        await _context.Bookmarks.AddAsync(createdBookmark);
         await _context.SaveChangesAsync();
-        return _mapper.Map<BookmarkDto>(bookmark);
+        return _mapper.Map<BookmarkDto>(createdBookmark);
     }
 
     public async Task DeleteBookmarkAsync(long id)

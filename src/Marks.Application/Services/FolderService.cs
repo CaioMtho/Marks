@@ -69,9 +69,10 @@ public class FolderService(MarksDbContext context, IMapper mapper) : IFolderServ
 
     public async Task<FolderDto> CreateFolderAsync(FolderCreateDto folder)
     {
-        await _context.Folders.AddAsync(_mapper.Map<Folder>(folder));
+        var createdFolder = _mapper.Map<Folder>(folder);
+        await _context.Folders.AddAsync(createdFolder);
         await _context.SaveChangesAsync();
-        return _mapper.Map<FolderDto>(folder);
+        return _mapper.Map<FolderDto>(createdFolder);
     }
 
     public async Task DeleteFolderAsync(long id)

@@ -1,7 +1,6 @@
 namespace Marks.Application.Interfaces;
 
-using Marks.Application.Dto.User;
-using Marks.Application.Models;
+using Dto.User;
 
 public interface IUserService
 {

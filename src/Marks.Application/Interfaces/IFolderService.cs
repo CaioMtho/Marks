@@ -1,7 +1,7 @@
 namespace Marks.Application.Interfaces;
 
-using Marks.Application.Dto.Folder;
-using Marks.Application.Models;
+using Dto.Folder;
+using Models;
 
 public interface IFolderService
 {
