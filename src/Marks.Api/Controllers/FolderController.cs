@@ -1,7 +1,7 @@
 namespace Marks.Api.Controllers
 {
-    using Marks.Application.Dto.Folder;
-    using Marks.Application.Interfaces;
+    using Application.Dto.Folder;
+    using Application.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
@@ -14,8 +14,6 @@ namespace Marks.Api.Controllers
         public async Task<IActionResult> GetFolderById(long id)
         {
             var folder = await _folderService.GetFolderByIdAsync(id);
-            if (folder == null)
-                return NotFound();
 
             return Ok(folder);
         }

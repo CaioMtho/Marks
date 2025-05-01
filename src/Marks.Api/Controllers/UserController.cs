@@ -10,7 +10,7 @@ namespace Marks.Api.Controllers
     {
         private readonly IUserService _userService = userService;
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {
             var token = 
@@ -35,14 +35,17 @@ namespace Marks.Api.Controllers
             return Ok(updatedUser);
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> CreateUser([FromBody] UserCreateDto user)
         {
             var createdUser = await _userService.CreateUserAsync(user);
-            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
+            return CreatedAtAction(
+                nameof(GetUserById),
+                new { id = createdUser.Id },
+                createdUser);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:long}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
             await _userService.DeleteUserAsync(id);

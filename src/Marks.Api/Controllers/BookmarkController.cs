@@ -13,8 +13,6 @@ public class BookmarkController(IBookmarkService bookmarkService) : ControllerBa
     public async Task<IActionResult> GetBookmarkById(long id)
     {
         var bookmark = await _bookmarkService.GetBookmarkByIdAsync(id);
-        if (bookmark == null)
-            return NotFound();
 
         return Ok(bookmark);
     }
@@ -74,8 +72,6 @@ public class BookmarkController(IBookmarkService bookmarkService) : ControllerBa
             dto,
             cancellationToken
         );
-        if (updatedBookmark == null)
-            return NotFound();
 
         return Ok(updatedBookmark);
     }
