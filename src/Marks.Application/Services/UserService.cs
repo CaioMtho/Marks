@@ -7,22 +7,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Marks.Application.Services;
 
-public class UserService(MarksDbContext context, ITokenService tokenService, IMapper mapper) : IUserService
+public class UserService(MarksDbContext context, ITokenService tokenService, IMapper mapper)
+    : IUserService
 {
     private readonly MarksDbContext _context = context;
     private readonly IMapper _mapper = mapper;
     private readonly ITokenService _tokenService = tokenService;
+
     public async Task<UserDto> GetUserByIdAsync(long id)
     {
-        var user = await _context.Users.FindAsync(id) 
-                   ?? throw new KeyNotFoundException($"User with id: {id} not found");
+        var user =
+            await _context.Users.FindAsync(id)
+            ?? throw new KeyNotFoundException($"User with id: {id} not found");
         return _mapper.Map<UserDto>(user);
     }
 
     public async Task<UserDto> UpdateUserAsync(long id, UserUpdateDto patch)
     {
-        var user = await _context.Users.FindAsync(id) 
-                   ?? throw new KeyNotFoundException($"User with id: {id} not found");
+        var user =
+            await _context.Users.FindAsync(id)
+            ?? throw new KeyNotFoundException($"User with id: {id} not found");
         _mapper.Map(patch, user);
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
@@ -39,12 +43,13 @@ public class UserService(MarksDbContext context, ITokenService tokenService, IMa
 
     public async Task DeleteUserAsync(long id)
     {
-        var user = await _context.Users.FindAsync(id) 
-                   ?? throw new KeyNotFoundException($"User with id: {id} not found");
+        var user =
+            await _context.Users.FindAsync(id)
+            ?? throw new KeyNotFoundException($"User with id: {id} not found");
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
     }
-    
+
     public async Task<string?> Authenticate(string email, string password)
     {
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
@@ -54,5 +59,4 @@ public class UserService(MarksDbContext context, ITokenService tokenService, IMa
 
         return _tokenService.GenerateToken(user);
     }
-
 }

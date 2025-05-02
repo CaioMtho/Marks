@@ -9,5 +9,4 @@ public interface IUserService
     Task<UserDto> CreateUserAsync(UserCreateDto user);
     Task DeleteUserAsync(long id);
     Task<string?> Authenticate(string email, string password);
-    
 }

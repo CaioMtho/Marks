@@ -14,13 +14,15 @@ public class FolderService(MarksDbContext context, IMapper mapper) : IFolderServ
 {
     private readonly MarksDbContext _context = context;
     private readonly IMapper _mapper = mapper;
-    
+
     public async Task<PaginatedResult<FolderDto>> GetFoldersAsync(
-        int? page, int? pageSize, 
-        string? filter = null, 
-        long? userId = null, 
+        int? page,
+        int? pageSize,
+        string? filter = null,
+        long? userId = null,
         string? orderBy = null,
-        string? orderDirection = null)
+        string? orderDirection = null
+    )
     {
         var query = _context.Folders.AsQueryable().AsNoTracking();
 
@@ -35,9 +37,7 @@ public class FolderService(MarksDbContext context, IMapper mapper) : IFolderServ
             orderBy = "CreatedAt";
 
         var sortExpression = $"{orderBy} {orderDirection ?? "asc"}";
-        query = query
-            .Include(f => f.Bookmarks)
-            .OrderBy(sortExpression);
+        query = query.Include(f => f.Bookmarks).OrderBy(sortExpression);
 
         var projectedQuery = query.ProjectTo<FolderDto>(_mapper.ConfigurationProvider);
 
@@ -48,20 +48,22 @@ public class FolderService(MarksDbContext context, IMapper mapper) : IFolderServ
             projectedQuery,
             currentPage,
             currentPageSize
-        );    
+        );
     }
 
     public async Task<FolderDto> GetFolderByIdAsync(long id)
     {
-        var folder = await _context.Folders.FindAsync(id)
-                     ?? throw new KeyNotFoundException($"Folder with id {id} not found");
+        var folder =
+            await _context.Folders.FindAsync(id)
+            ?? throw new KeyNotFoundException($"Folder with id {id} not found");
         return _mapper.Map<FolderDto>(folder);
     }
 
     public async Task<FolderDto> UpdateFolderAsync(long id, FolderUpdateDto patch)
     {
-        var folder = await _context.Folders.FindAsync(id) 
-                     ?? throw new KeyNotFoundException($"Folder with id {id} not found");
+        var folder =
+            await _context.Folders.FindAsync(id)
+            ?? throw new KeyNotFoundException($"Folder with id {id} not found");
         _mapper.Map(patch, folder);
         await _context.SaveChangesAsync();
         return _mapper.Map<FolderDto>(folder);
@@ -77,8 +79,9 @@ public class FolderService(MarksDbContext context, IMapper mapper) : IFolderServ
 
     public async Task DeleteFolderAsync(long id)
     {
-        var folder = await _context.Folders.FindAsync(id) 
-                     ?? throw new KeyNotFoundException($"Folder with id {id} not found");
+        var folder =
+            await _context.Folders.FindAsync(id)
+            ?? throw new KeyNotFoundException($"Folder with id {id} not found");
         _context.Folders.Remove(folder);
         await _context.SaveChangesAsync();
     }

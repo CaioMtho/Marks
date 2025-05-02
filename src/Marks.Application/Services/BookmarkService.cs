@@ -14,6 +14,7 @@ public class BookmarkService(MarksDbContext context, IMapper mapper) : IBookmark
 {
     private readonly MarksDbContext _context = context;
     private readonly IMapper _mapper = mapper;
+
     public async Task<PaginatedResult<BookmarkDto>> GetBookmarksAsync(
         int? page = 1,
         int? pageSize = 10,
