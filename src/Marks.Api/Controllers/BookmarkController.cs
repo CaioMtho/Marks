@@ -1,9 +1,11 @@
 using Marks.Application.Dto.Bookmark;
 using Marks.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marks.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class BookmarkController(IBookmarkService bookmarkService) : ControllerBase

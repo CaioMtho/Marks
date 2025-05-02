@@ -13,8 +13,9 @@ public class UserProfile : Profile
                 dest => dest.Password,
                 opt => opt.MapFrom(src => BCrypt.Net.BCrypt.HashPassword(src.Password))
             );
+
         CreateMap<User, UserDto>();
-        CreateMap<UserCreateDto, User>()
+        CreateMap<User, UserUpdateDto>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
     }
 }

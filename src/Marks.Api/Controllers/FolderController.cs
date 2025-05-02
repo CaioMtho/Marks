@@ -2,8 +2,10 @@ namespace Marks.Api.Controllers
 {
     using Application.Dto.Folder;
     using Application.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FolderController(IFolderService folderService) : ControllerBase

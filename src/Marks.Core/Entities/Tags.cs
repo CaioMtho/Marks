@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Marks.Core.Entities;
 
-[Table("tag")]
+[Table("tags")]
 public class Tag
 {
     [Key]

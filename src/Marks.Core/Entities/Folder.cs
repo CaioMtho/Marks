@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Marks.Core.Entities;
 
-[Table("folder")]
+[Table("folders")]
 public class Folder
 {
     [Key]

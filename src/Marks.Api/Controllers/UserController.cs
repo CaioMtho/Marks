@@ -1,5 +1,6 @@
 using Marks.Application.Dto.User;
 using Marks.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marks.Api.Controllers
@@ -19,6 +20,7 @@ namespace Marks.Api.Controllers
             return Ok(token);
         }
 
+        [Authorize]
         [HttpGet("{id:long}")]
         public async Task<IActionResult> GetUserById(long id)
         {
@@ -27,6 +29,7 @@ namespace Marks.Api.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpPut("{id:long}")]
         public async Task<IActionResult> UpdateUser(long id, [FromBody] UserUpdateDto user)
         {
@@ -41,6 +44,7 @@ namespace Marks.Api.Controllers
             return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
         }
 
+        [Authorize]
         [HttpDelete("{id:long}")]
         public async Task<IActionResult> DeleteUser(long id)
         {

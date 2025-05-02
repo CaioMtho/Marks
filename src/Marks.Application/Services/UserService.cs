@@ -54,7 +54,14 @@ public class UserService(MarksDbContext context, ITokenService tokenService, IMa
     {
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
-        if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password))
+        if (
+            user == null
+            || string.IsNullOrWhiteSpace(user.Password)
+            || !user.Password.StartsWith("$2")
+        )
+            return null;
+
+        if (!BCrypt.Net.BCrypt.Verify(password, user.Password))
             return null;
 
         return _tokenService.GenerateToken(user);
