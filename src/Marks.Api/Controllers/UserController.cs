@@ -13,13 +13,12 @@ namespace Marks.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {
-            var token = 
-                await _userService.Authenticate(userLoginDto.Email, userLoginDto.Password);
-            if (token == null) 
+            var token = await _userService.Authenticate(userLoginDto.Email, userLoginDto.Password);
+            if (token == null)
                 return Unauthorized(new { message = "Username or password is incorrect" });
             return Ok(token);
         }
-        
+
         [HttpGet("{id:long}")]
         public async Task<IActionResult> GetUserById(long id)
         {
@@ -39,10 +38,7 @@ namespace Marks.Api.Controllers
         public async Task<IActionResult> CreateUser([FromBody] UserCreateDto user)
         {
             var createdUser = await _userService.CreateUserAsync(user);
-            return CreatedAtAction(
-                nameof(GetUserById),
-                new { id = createdUser.Id },
-                createdUser);
+            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
         }
 
         [HttpDelete("{id:long}")]

@@ -9,7 +9,7 @@ namespace Marks.Api.Controllers
     public class FolderController(IFolderService folderService) : ControllerBase
     {
         private readonly IFolderService _folderService = folderService;
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFolderById(long id)
         {

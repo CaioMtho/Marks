@@ -12,7 +12,6 @@ builder.Services.AddDbContext<MarksDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("LocalConnection"))
 );
 
-
 builder.Services.AddAutoMapper(typeof(FolderProfile).Assembly);
 builder.Services.AddScoped<IBookmarkService, BookmarkService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -22,27 +21,23 @@ builder.Services.AddSingleton<ITokenService, JwtService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Marks.Api",
-        Version = "v1",
-        Description = "Gerenciador centralizado de marcações e favoritos",
-        Contact = new OpenApiContact
+    c.SwaggerDoc(
+        "v1",
+        new OpenApiInfo
         {
-            Name = "Caio Matheus",
-            Email = "caiomathol@gmail.com"
+            Title = "Marks.Api",
+            Version = "v1",
+            Description = "Gerenciador centralizado de marcações e favoritos",
+            Contact = new OpenApiContact { Name = "Caio Matheus", Email = "caiomathol@gmail.com" },
         }
-    });
+    );
 });
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(
         "AllowAll",
-        corsPolicyBuilder => corsPolicyBuilder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
+        corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
     );
 });
 
