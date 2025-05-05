@@ -30,7 +30,7 @@ namespace Marks.Api.Controllers
         }
 
         [Authorize]
-        [HttpPut("{id:long}")]
+        [HttpPatch("{id:long}")]
         public async Task<IActionResult> UpdateUser(long id, [FromBody] UserUpdateDto user)
         {
             var updatedUser = await _userService.UpdateUserAsync(id, user);

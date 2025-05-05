@@ -49,5 +49,12 @@ namespace Marks.Api.Controllers
             await _folderService.DeleteFolderAsync(id);
             return NoContent();
         }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateFolder(long id, [FromBody] FolderUpdateDto folder)
+        {
+            var updatedFolder = await _folderService.UpdateFolderAsync(id, folder);
+            return Ok(updatedFolder);
+        }
     }
 }
