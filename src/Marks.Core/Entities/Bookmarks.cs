@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Marks.Core.Entities;
 
-[Table("bookmark")]
+[Table("bookmarks")]
 public class Bookmark
 {
     [Key]

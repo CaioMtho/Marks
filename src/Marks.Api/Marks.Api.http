@@ -1,6 +1,25 @@
-@Marks.Api_HostAddress = http://localhost:5134
-
-GET http://localhost:5134/api/bookmark
+POST http://localhost:5134/api/user/register
+Content-Type: application/json
 Accept: application/json
 
+{
+  "username": "teste",
+  "email": "teste@teste.com",
+  "password": "0123456"
+}
+###
+POST http://localhost:5134/api/user/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "teste@teste.com",
+  "password": "0123456"
+}
+###
+
+GET http://localhost:5134/api/bookmark
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwidW5pcXVlX25hbWUiOiJ0ZXN0ZSIsImVtYWlsIjoidGVzdGVAdGVzdGUuY29tIiwibmFtZWlkIjoiMyIsImV4cCI6MTc0NjIxMjE3NywiaXNzIjoiTWFya3MuQVBJIn0.mOA2hGM-HIxDeG9VlHLTMj37LHtMN4fIwHT1jGq2Spg
 ###

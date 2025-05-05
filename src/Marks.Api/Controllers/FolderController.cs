@@ -2,14 +2,16 @@ namespace Marks.Api.Controllers
 {
     using Application.Dto.Folder;
     using Application.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FolderController(IFolderService folderService) : ControllerBase
     {
         private readonly IFolderService _folderService = folderService;
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFolderById(long id)
         {
@@ -46,6 +48,13 @@ namespace Marks.Api.Controllers
         {
             await _folderService.DeleteFolderAsync(id);
             return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateFolder(long id, [FromBody] FolderUpdateDto folder)
+        {
+            var updatedFolder = await _folderService.UpdateFolderAsync(id, folder);
+            return Ok(updatedFolder);
         }
     }
 }

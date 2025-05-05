@@ -9,9 +9,13 @@ public class UserProfile : Profile
     public UserProfile()
     {
         CreateMap<UserCreateDto, User>()
-            .ForMember(dest => dest.Password, opt => opt.MapFrom(src => BCrypt.Net.BCrypt.HashPassword(src.Password)));
+            .ForMember(
+                dest => dest.Password,
+                opt => opt.MapFrom(src => BCrypt.Net.BCrypt.HashPassword(src.Password))
+            );
+
         CreateMap<User, UserDto>();
-        CreateMap<UserCreateDto, User>()
+        CreateMap<User, UserUpdateDto>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
     }
 }
